@@ -49,7 +49,7 @@ flowchart TD
     end
 
     subgraph Deep Learning & XAI Core
-        B --> C[MineralNet Neural Network<br/>5,196 Parameters | s390x Vectorized]
+        B --> C[MineralNet Neural Network<br/>5,196 Parameters - s390x Vectorized]
         C --> D[Local Sensitivity Perturbation]
         D --> E[Human-Centric Geological Knowledge Base<br/>Plain-English Explanations]
     end
