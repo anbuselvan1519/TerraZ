@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Raw multi-gigabyte/100MB+ relational database dump files (exceeds GitHub 100MB limit)
+extra/rdbms/
+extra/grade.xlsx
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Sensitive credentials & keys
+*.pem
+*.key
+*.token

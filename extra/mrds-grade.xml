@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Schweitzer, Peter N.</origin>
+        <pubdate>20191023</pubdate>
+        <title>Record quality tables for the Mineral Resources Data System</title>
+        <edition>1.0</edition>
+        <geoform>tabular data</geoform>
+        <serinfo>
+          <sername>data release</sername>
+          <issue>10.5066/P9DYLWMP</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Reston, Virginia</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.5066/P9DYLWMP</onlink>
+        <onlink>https://www.sciencebase.gov/catalog/item/5d712a5ae4b0c4f70cfd4e54</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The tables in this data release provide measures of quality for each of 304,643 records in the Mineral Resources Data System (MRDS) database, located at https://mrdata.usgs.gov/mrds/ describing mineral resources worldwide but focusing on those located in the United States.  One table provides the measures of quality, the other provides the overall record scores that may be used to sort records by overall quality.
+
+MRDS is distributed from USGS in several different formats for the convenience of a variety of different users.  For example a flattened version of the database is available in which the one-to-many relationships in MRDS are suppressed by combining them into a single field, resulting in a subset of the data that can be viewed, albeit confusingly, in a spreadsheet.  The underlying database is relational with about 35 linked tables.  That was the source used in this analysis.
+
+The measures of quality were obtained from an analysis of the fully relational form of MRDS, in which each record of MRDS is represented by many rows of a variety of tables in the database.  The tables of the fully relational form of MRDS are described in detail at https://mrdata.usgs.gov/mrds/full/about.php.
+
+MRDS records describe individual mineral resources.  This analysis is intended to separate records that describe those resources well and are trustworthy from those that lack fundamental information or cannot be verified easily.
+
+The results of the analysis assign to each MRDS record a grade from A to E, where A records are judged the most informative and reliable and E records the least informative and reliable.
+
+Code used to carry out the analysis is included to help users understand the procedure used.</abstract>
+      <purpose>Because of its size and diversity, MRDS presents a severe problem of perspective to the potential user.  Thin records containing relatively little detail exist alongside much fuller records, and typical interfaces focused on geographic location or search forms had no reliable method of indicating which records might serve to summarize the character of a given deposit or operation.
+
+The practical solution to this problem presented in these data allows users to search for or display only the best records first, and to examine records of lower quality at a later stage in their analysis.</purpose>
+      <supplinf>List of files
+
+create-json-abbreviated.php: PHP script used to create the JSON renditions of MRDS records in this analysis.  This version omits the fields insert_date, inserted_by, update_date, and updated_by because these fields are fairly large yet contribute no scientific information to the record.
+
+grade.db: SQLite version 3 database containing the grade table and a data dictionary explaining its columns.
+
+grade.php: PHP script used to calculate the measures of quality contained in the grade table.
+
+grade.txt: Comma-separated values rendition of the grade table, containing measures of quality determined for each record.
+
+grade.xlsx: Microsoft Excel spreadsheet containing the grade and score tables, with formulas providing statistical summaries of the values.
+
+grade-letter.sql: SQL commands used to assign a final letter grade for records.
+
+grade-result.php: PHP script used to calculate the grade assigned to each record and store it into the score table.
+
+mrds-grade.txt: Metadata record explaining the grade table and score table along with the processes used to create them.
+
+mrds-grade.xml: Metadata record expressed as XML; content is the same as mrds-grade.txt.
+
+refs-patterns.txt: Perl-compatible regular expressions used to determine whether short reference texts were likely to indicate a bibliographic resource that could be found.
+
+score.db: SQLite version 3 database containing the score table.
+
+score.txt: Comma-separated values rendition of the score table, containing weighted score of positive attributes and defects, and the assigned letter grade for each record.
+
+Instructions for use
+
+Because the score table given in the file score.txt contains exactly one row for each MRDS record, identified by the key field dep_id, this table can be imported into software such as a geographic information system (GIS) or relational database management system alongside a download of MRDS itself.  The user should instruct the software to create a database join between the score table and the main MRDS table (in the full version of MRDS, this would be the deposits table) using the key field dep_id to link the tables.  Then queries on the MRDS database table can include the grade field obtained from the joined score table to limit or order results of a selection.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>201809</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>Analysis of records was conducted during this time.</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-178.8205</westbc>
+        <eastbc>179.1318</eastbc>
+        <northbc>80.00096</northbc>
+        <southbc>-72.99718</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>improvement of scientific data usability</themekey>
+        <themekey>economic geology</themekey>
+        <themekey>mineral resources</themekey>
+        <themekey>scientific software</themekey>
+        <themekey>metadata development</themekey>
+      </theme>
+      <theme>
+        <themekt>Alexandria Digital Library Feature Type Thesaurus</themekt>
+        <themekey>mine sites</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>geoscientificInformation</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Metadata Identifier</themekt>
+        <themekey>USGS:5d712a5ae4b0c4f70cfd4e54</themekey>
+      </theme>
+    </keywords>
+    <accconst>none</accconst>
+    <useconst>none</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Peter N Schweitzer</cntper>
+          <cntorg>U.S. Geological Survey: Midwest Region: EASTERN MINERAL &amp; ENVIRON RES SC</cntorg>
+        </cntperp>
+        <cntpos>Geologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>Mail Stop 954
+12201 Sunrise Valley Dr</address>
+          <city>Reston</city>
+          <state>VA</state>
+          <postal>20192</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>703-648-6533</cntvoice>
+        <cntfax>703-648-6252</cntfax>
+        <cntemail>pschweitzer@usgs.gov</cntemail>
+        <cntinst>https://orcid.org/0000-0002-9532-6681</cntinst>
+      </cntinfo>
+    </ptcontac>
+    <browse>
+      <browsen>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54?name=MRDS-graded-CrippleCreekCO.png</browsen>
+      <browsed>Graded records near Cripple Creek, Colorado.  Blue = A records, Red = B records, Green = C records, Brown = D records, Gray = E records. Shown using a map interface at https://mrdata.usgs.gov/mrds/map-graded.html with the layer selector open.</browsed>
+      <browset>PNG</browset>
+    </browse>
+    <datacred>Preliminary discussion of the criteria and results with Damon Bickerstaff of USGS.</datacred>
+    <native>Linux, Apache, PostgreSQL, PostGIS, and PHP were used to conduct analyses.</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Ancillary data files and lists of specific data values were used to properly interpret some fields.  Specifically the reporter names were compared with a list of known values that represent large groups or otherwise do not indicate who compiled the information, and a list of generic names was used to determine whether the site described has a name or is merely identified as to the type of operation present there.
+
+References were analyzed in detail to determine which data values in that table were likely to indicate a reference that might be found. This process probably overestimated the number of locatable bibliographic references.  For short reference texts, a long list of regular expressions was created to match patterns recognized in the data.  These regular expressions are included in the file refs-patterns.txt.</attraccr>
+    </attracc>
+    <logic>Total length of the record is generally correlated with the row count (number of rows of any table providing information about the record). To reduce this correlation, the GeoJSON was regenerated omitting the administrative fields inserted_by, insert_date, updated_by, and update_date.
+
+Some tables were included in the row and table counts for each record but were otherwise ignored.  Those include dups, physiography, analytical_data, districts, plss_coordinates, and other_dbs.</logic>
+    <complete>All records in MRDS present in the database on mrdata.usgs.gov as of September 2018 were included in the analysis.
+
+Several tables were included in table and row counts but were otherwise ignored: dups, physiography, analytical_data, districts, plss_coordinates, and other_dbs.
+
+Several characteristics of the records were noted or measured and are included in this dataset but not considered when calculating record scores or grades.  These included presence or absence of an old MRDS ID, an old MAS/MILS ID, the total length of comments in the record, the number of production, production detail, resource, and resource detail table rows (though these were included in the economic context count).</complete>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2018</pubdate>
+            <title>Mineral Resources Data System</title>
+            <geoform>Relational database</geoform>
+            <onlink>https://mrdata.usgs.gov/mrds/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>digital data</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>201809</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>Date information was accessed for this analysis.</srccurr>
+        </srctime>
+        <srccitea>MRDS</srccitea>
+        <srccontr>The entire publicly-available MRDS database was used in this analysis.</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>MRDS is stored as a relational database composed of about 35 tables joined primarily on the record identifier dep_id.  Using a procedure written in PHP, the records were extracted and re-expressed in the GeoJSON format.  For this analysis a special version of this GeoJSON format was created that omitted the database fields insert_date, inserted_by, update_date, and updated_by so that the overall length of the record would be less directly dependent on the number of table rows containing the information.
+
+A PHP (version 7) procedure grade.php was used to analyze each record in its GeoJSON format to determine the results of each test or measure. Results of this analysis are stored, one row per MRDS record, in the table grade.
+
+A second PHP procedure grade-result.php was used to calculate the weighted score of positive record characteristics and the number of recognized defects in the record.  The SQL commands in grade-letter.sql use those values to determine an overall record grade.  Results of this analysis are provided in the table score.
+
+The source code of these PHP procedures are provided as additional documentation.
+
+E records
+
+A record was assigned the lowest grade, E only if the record lacked coordinates, commodity, or bibliographic reference information, meaning that there were no bibliographic reference records at all.
+
+Description of the algorithm used for records graded A through D
+
+The grade of each record was determined by computing a weighted score of positive characteristics of the record, determining the initial grade from arbitrary breakpoints in the distribution of those values, then docking the record one grade if the record contained any defects.
+
+Score of positive characteristics
+
+For most measures of records the distribution of values in the database is highly skewed.  Points were assigned to each record using consistent but arbitrarily determined breakpoints, as follows.
+
+Total record length (4 points possible): 1 if 2000 or greater; 2 if 4000 or greater; 3 if 10,000 or greater; 4 if 20,000 or greater.
+
+Row count (4 points possible): 1 if 20 or greater; 2 if 30 or greater; 3 if 60 or greater; 4 if 130 or greater.
+
+Table count (4 points possible): 1 if 10 or greater; 2 if 20 or greater; 3 if 24 or greater; 4 if 28 or greater.
+
+Reference count (4 points possible): 1 if 1 or greater; 2 if 3 or greater; 3 if 6 or greater; 4 if 10 or greater.
+
+Past review of MRDS records indicates that many entries in the reference table are information not describing references (such as notes), are not locatable references (for example generic internal files that probably no longer exist) or indicate the existence of the record in a previous database. Reference table entries 32 characters or longer and containing a 4-digit year between 1880 and 2018 were considered likely to represent locatable publications.  In addition to these, reference table entries shorter than 32 characters were considered locatable information resources if they matched any of about 150 specifically-crafted regular expressions written for this analysis, in the accompanying file refs-patterns.txt.
+
+Geologic context count (4 points possible): 1 if 1 or greater; 2 if 5 or greater; 3 if 10 or greater; 4 if 25 or greater.
+
+Geologic comment count (3 points possible): 1 if 1 or greater; 2 if 3 or greater; 3 if 5 or greater.
+
+Economic context count (4 points possible): 1 if 1 or greater; 2 if 5 or greater;  3 if 10 or greater; 4 if 25 or greater.
+
+Economic comment count (3 points possible):  1 if 1 or greater; 2 if 3 or greater; 3 if 5 or greater.
+
+Deposit model: (1 point possible): 1 if 1 or greater.
+
+Total score possible is 30.
+
+Defects assessed
+
+For records not assigned the lowest grade E, the grade was docked one level if any of the following defects were present: no reporter records; one reporter but not a named person, such as "Eastern Field Operations Center" of the Bureau of Mines; presence of production information where the record type is "prospect" or "occurrence"; presence of resource information where the record type is "occurrence"; lack of bibliographic references likely to represent locatable information resources; mismatch between location information and the geographic coordinates given; site name is generic, such as "unknown" or "unnamed"; or geographic coordinates are known to be significantly inaccurate.</procdesc>
+        <srcused>MRDS</srcused>
+        <procdate>20181001</procdate>
+        <proccont>
+          <cntinfo>
+            <cntperp>
+              <cntper>Peter N Schweitzer</cntper>
+              <cntorg>U.S. Geological Survey: Midwest Region: EASTERN MINERAL &amp; ENVIRON RES SC</cntorg>
+            </cntperp>
+            <cntpos>Geologist</cntpos>
+            <cntaddr>
+              <addrtype>mailing address</addrtype>
+              <address>Mail Stop 954
+12201 Sunrise Valley Dr</address>
+              <city>Reston</city>
+              <state>VA</state>
+              <postal>20192</postal>
+              <country>USA</country>
+            </cntaddr>
+            <cntvoice>703-648-6533</cntvoice>
+            <cntfax>703-648-6252</cntfax>
+            <cntemail>pschweitzer@usgs.gov</cntemail>
+            <cntinst>https://orcid.org/0000-0002-9532-6681</cntinst>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>grade</enttypl>
+        <enttypd>Results of diagnostic tests on each record of MRDS.  Rows are MRDS records, columns are tests.  Tables are provided as tab-delimited text, Microsoft Excel worksheets, and SQLite databases.</enttypd>
+        <enttypds>this data release</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>dep_id</attrlabl>
+        <attrdef>Deposit ID; unique identifier of the MRDS record.</attrdef>
+        <attrdefs>MRDS</attrdefs>
+        <attrdomv>
+          <udom>Numerical identifier without scientific significance, 8 digits, no leading zeros.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q01</attrlabl>
+        <attrdef>Total length; string length of the JSON record prior to parsing. For this analysis, a copy of the JSON record was made in which the administrative elements inserted_by, insert_date, updated_by, and update_date were omitted so that the overall length might be less directly dependent on the number of table rows comprising the record.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>103</rdommin>
+            <rdommax>89249</rdommax>
+            <attrunit>bytes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q02</attrlabl>
+        <attrdef>Row count; Number of table rows, of any tables, contributing to this record.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>481</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q03</attrlabl>
+        <attrdef>Table count; number of distinct tables containing information for this record. This characteristic indicates the topical diversity of information that is provided by the record.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>33</rdommax>
+            <attrunit>tables</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q04</attrlabl>
+        <attrdef>Reference count; number of references likely to indicate locatable information resources.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>192</rdommax>
+            <attrunit>references</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q05</attrlabl>
+        <attrdef>Reporter count; number of reporter table rows.  Generally, the more reporters indicated, the more likely the record was reviewed well.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>16</rdommax>
+            <attrunit>reporters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q06</attrlabl>
+        <attrdef>Has coordinates; coordinates are specified.  A requirement for coordinates was never exhaustively enforced.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q07</attrlabl>
+        <attrdef>Has commodity; one or more commodity records exist.  A requirement for commodity records was never exhaustively enforced.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q08</attrlabl>
+        <attrdef>Anonymous reporter; there is only one reporter and it is not a named person.  Many records have only one reporter and it is either unknown or a generic organization name.  This is not a critical defect but suggests the record was not subject to thorough review. Values considered unknown are given in the file grade.php in the lines following "anonymous_reporter".</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q09</attrlabl>
+        <attrdef>Unexpected production; production records exist but dev_st is Occurrence or Prospect. A minor inconsistency that should not occur in well written records.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q10</attrlabl>
+        <attrdef>Unexpected resource; resource records exist but dev_st is Occurrence.  A minor inconsistency that should not occur in well written records.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q11</attrlabl>
+        <attrdef>Comment length; combined length of all comment texts.  A record whose information is mostly provided as unparsed text has impaired usability because software cannot easily categorize it or compare it with others.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>75193</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q12</attrlabl>
+        <attrdef>Reference row count; number of reference table rows. If zero, this is a critical defect.  A record with no recognized locatable references (see reference count above, field q04) but many reference table rows has impaired formatting or scrambled table entries.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>261</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q13</attrlabl>
+        <attrdef>Has MRDS ID; record has an old MRDS record identifier.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q14</attrlabl>
+        <attrdef>Has MAS ID; record has an old MAS/MILS record identifier.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q15</attrlabl>
+        <attrdef>Location match; stated location of the record matches geographic area calculated from coordinates.  Important where the point location is known to fall in a different geographic area than the location table entries specify, suggesting the location may be incorrect.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>-1</edomv>
+            <edomvd>The location match could not be assessed due to mismatch of information between the MRDS and the reference database used.</edomvd>
+            <edomvds>this data release</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q16</attrlabl>
+        <attrdef>Deposit model; a deposit model was assigned to the record.  A positive indicator.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q17</attrlabl>
+        <attrdef>Production count; number of production records.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>86</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q18</attrlabl>
+        <attrdef>Prod detail count; number of production detail records.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>312</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q19</attrlabl>
+        <attrdef>Resource count; number of resource records.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>22</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q20</attrlabl>
+        <attrdef>Res detail count; number of resource detail records.  This measure was not used to calculate overall scores.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>40</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q21</attrlabl>
+        <attrdef>Geologic context count; number of table records indicating geological context of the deposit.  Includes materials, rocks, structures, tectonic setting, ore control, alteration, concentration processes, orebody form and size, and age of mineralization.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>77</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q22</attrlabl>
+        <attrdef>Generic name; there is only one name record, with no real name or a generic name.  A minor defect that should not be present in high-quality records.  Names recognized as generic are those listed in the file grade.php on lines following the text "generic_name_list".</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q23</attrlabl>
+        <attrdef>Geologic comment count; number of comments categorized as geology, orebody, or age. The category ?deposit? does not count because all older comments got that category some years ago regardless of their contents.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>18</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q24</attrlabl>
+        <attrdef>Economic context count; number of records describing economic aspects of the site, including operations and workings.  Specifically, holdings, land status, ownership, production, production detail, resource, resource detail, and workings.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>120</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q25</attrlabl>
+        <attrdef>Economic comment count; number of comments categorized as development, production, workings, and other economic factors.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>36</rdommax>
+            <attrunit>rows</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>q26</attrlabl>
+        <attrdef>Coordinates inaccurate; coordinates in the record have a note indicating they are the centroid of the county or state or are estimated to be not within 2km of the actual location.  The texts indicating this situation are given in the file grade.php on the lines following the text "rel_pos_text".
+
+MRDS records are generally not located with high precision because the coordinates were drawn from previously published studies that specified limited precision and were written long before modern geographic information systems existed.  This measure of the location accuracy catches only the most obvious location problems, in which previous editors of MRDS were aware that location was poorly constrained by available evidence.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>1</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>score</enttypl>
+        <enttypd>Summary results of scores for each MRDS record based on diagnostic test values.</enttypd>
+        <enttypds>this data release</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>dep_id</attrlabl>
+        <attrdef>Deposit ID; unique identifier of the MRDS record.</attrdef>
+        <attrdefs>MRDS</attrdefs>
+        <attrdomv>
+          <udom>Numerical identifier without scientific significance, 8 digits, no leading zeros.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>good</attrlabl>
+        <attrdef>Weighted numerical score of positive characteristics of the record.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>30</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>bad</attrlabl>
+        <attrdef>Number of defects found in the record.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>5</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>grade</attrlabl>
+        <attrdef>Letter grade assigned to the record.</attrdef>
+        <attrdefs>this data release</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>A</edomv>
+            <edomvd>Highest quality record by the criteria of this study. Generally, records that have a lot of information and no obvious defects.</edomvd>
+            <edomvds>this data release</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>B</edomv>
+            <edomvd>Second-highest quality record, somewhat less information than A records, or like A records but with one or more defect.</edomvd>
+            <edomvds>this data release</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>C</edomv>
+            <edomvd>Middle-level records; some information beyond the minimum expected, may contain more defects.</edomvd>
+            <edomvds>this data release</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>D</edomv>
+            <edomvd>Thin records providing little substantive information about the mineral resources they describe; defects are common.</edomvd>
+            <edomvds>this data release</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>E</edomv>
+            <edomvd>A record lacking commodity, coordinate, or bibliographic reference information.</edomvd>
+            <edomvds>this data release</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <overview>
+      <eaover>The included file grade.xlsx is a Microsoft Excel workbook containing four sheets.  The sheet named "grade" includes a copy of the file grade.txt with a section below in which rank statistics on the columns are calculated using formulas.  Sheet "analysis" is a static copy of the rank statistics, copied by value from the sheet "grade" and transposed.  Sheet "score" contains a copy of the file score.txt.  Sheet "headings" contains the long headings (as opposed to the numbered headings like q04) of the grade table.  This file grade.xlsx should be considered informative rather than normative, meaning that the official version of these data is contained in the files grade.txt and score.txt.
+
+The included file grade.db is a SQLite database containing the contents of the file grade.txt as a table named "grade" along with a data dictionary table named grdinfo that explains the fields in the grade table.
+
+The included file score.db is a SQLite database containing the contents of the file score.txt as a table named "score".
+
+The two SQLite databases grade.db and score.db are included as informative copies of the data.  Like the Excel workbook grade.xlsx, the data contained in these files is the same as that given in the tables grade.txt and score.txt, but if a discrepancy were found, the tables grade.txt and score.txt should be considered authoritative.</eaover>
+      <eadetcit>This data release, files grade.xlsx, grade.db, and score.db.</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>Denver Federal Center, Building 810, Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80225</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>1-888-ASK-USGS (1-888-275-8747)</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>doi:10.5066/P9DYLWMP</resdesc>
+    <distliab>This database has been approved for release and publication by the U.S. Geological Survey (USGS). Although this database has been subjected to rigorous review and is substantially complete, the USGS reserves the right to revise the data pursuant to further analysis and review. Furthermore, it is released on condition that neither the USGS nor the United States Government may be held liable for any damages resulting from its authorized or unauthorized use.
+
+Although these data have been processed successfully on a computer system at the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty. The USGS or the U.S. Government shall not be held liable for improper or incorrect use of the data described and/or contained herein.
+
+Any use of trade, product or firm names is for descriptive purposes only and does not imply endorsement by the U.S. Geological Survey.
+
+Permission to reproduce copyrighted items must be secured from the copyright owner.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Tab-delimited text</formname>
+          <formcont>Characteristics of MRDS records used to estimate record quality
+and reliability. An annotated list of files contained in this
+distribution is included as list-of-files.txt.</formcont>
+          <filedec>unzip</filedec>
+          <transize>37</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54</networkr>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54?name=grade.txt</networkr>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54?name=score.txt</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>XLSX</formname>
+          <formcont>Characteristics of MRDS records used to estimate record quality
+and reliability. An annotated list of files contained in this
+distribution is included as list-of-files.txt.</formcont>
+          <filedec>unzip</filedec>
+          <transize>37</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54</networkr>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54?name=grade.xlsx</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>SQLite</formname>
+          <formvern>3</formvern>
+          <formcont>Characteristics of MRDS records used to estimate record quality
+and reliability. An annotated list of files contained in this
+distribution is included as list-of-files.txt.</formcont>
+          <filedec>unzip</filedec>
+          <transize>37</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54</networkr>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54?name=grade.db</networkr>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5d712a5ae4b0c4f70cfd4e54?name=score.db</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>none</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20200819</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Peter N Schweitzer</cntper>
+          <cntorg>U.S. Geological Survey: Midwest Region: EASTERN MINERAL &amp; ENVIRON RES SC</cntorg>
+        </cntperp>
+        <cntpos>Geologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>Mail Stop 954
+12201 Sunrise Valley Dr</address>
+          <city>Reston</city>
+          <state>VA</state>
+          <postal>20192</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>703-648-6533</cntvoice>
+        <cntfax>703-648-6252</cntfax>
+        <cntemail>pschweitzer@usgs.gov</cntemail>
+        <cntinst>https://orcid.org/0000-0002-9532-6681</cntinst>
+      </cntinfo>
+    </metc>
+    <metstdn>Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>
