@@ -1,4 +1,4 @@
-# ⚡ TerraZ — Ethical Critical Mineral Intelligence on IBM LinuxON
+# ⚡ TerraZ — Ethical Critical Mineral Intelligence on IBM LinuxONE
 
 <div align="center">
 
